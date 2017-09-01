@@ -12,16 +12,16 @@
 </head>
 <body ng-controller = 'studentController'>
     <div>Name</div>
-    <input type="text" ng-model = "name">
+    <input type="text" ng-model = "name" ng-disabled = "returnNumberOfStudents()>10">
 
     <div>Surname</div>
-    <input type="text" ng-model = "surname">
+    <input type="text" ng-model = "surname" ng-disabled = "returnNumberOfStudents()>10">
 
     <div>Gender</div>
-    <input type="radio" ng-model = "sex" value = "male">Male <br>
-    <input type="radio" ng-model = "sex" value = "female">Female <br>
+    <input type="radio" ng-model = "sex" value = "male" ng-disabled = "returnNumberOfStudents()>10">Male <br>
+    <input type="radio" ng-model = "sex" value = "female" ng-disabled = "returnNumberOfStudents()>10">Female <br>
 
-    <button ng-click = submitNewStudent() ng-disabled="!(name && surname && sex)">Submit</button>
+    <button ng-click = submitNewStudent() ng-disabled ="!(name && surname && sex)">Submit</button>
 
 </body>
 </html>

@@ -22,6 +22,10 @@ app.controller('studentController', function($scope, localStorageService){
        $scope.surname = null;
        $scope.sex = null;
     }
+
+    $scope.returnNumberOfStudents = function(){
+        return $scope.allStudents.length;
+    }
 });
 
-//localStorage.clear();
+localStorage.clear();
