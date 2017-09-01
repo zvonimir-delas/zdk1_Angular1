@@ -10,7 +10,18 @@
     <script src="./scripts/vendor/lodash.js"></script>
     <script src="./scripts/app/app.js"></script>
 </head>
-<body>
-    
+<body ng-controller = 'studentController'>
+    <div>Name</div>
+    <input type="text" ng-model = "name">
+
+    <div>Surname</div>
+    <input type="text" ng-model = "surname">
+
+    <div>Gender</div>
+    <input type="radio" ng-model = "sex" value = "male">Male <br>
+    <input type="radio" ng-model = "sex" value = "female">Female <br>
+
+    <button ng-click = submitNewStudent() ng-disabled="!(name && surname && sex)">Submit</button>
+
 </body>
 </html>
