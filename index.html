@@ -11,6 +11,7 @@
     <script src="./scripts/app/app.js"></script>
 </head>
 <body ng-controller = 'studentController'>
+    <h3>New student</h3>
     <div>Name</div>
     <input type="text" ng-model = "name" ng-disabled = "returnNumberOfStudents()>10">
 
@@ -18,10 +19,16 @@
     <input type="text" ng-model = "surname" ng-disabled = "returnNumberOfStudents()>10">
 
     <div>Gender</div>
-    <input type="radio" ng-model = "sex" value = "male" ng-disabled = "returnNumberOfStudents()>10">Male <br>
-    <input type="radio" ng-model = "sex" value = "female" ng-disabled = "returnNumberOfStudents()>10">Female <br>
+    <input type="radio" ng-model = "sex" value = "M" ng-disabled = "returnNumberOfStudents()>10">Male <br>
+    <input type="radio" ng-model = "sex" value = "F" ng-disabled = "returnNumberOfStudents()>10">Female <br>
 
     <button ng-click = submitNewStudent() ng-disabled ="!(name && surname && sex)">Submit</button>
-
-</body>
+    
+    <h3>List of students</h3>
+    <div>Search</div>
+    <input type="text" ng-model = "search"><br>
+    <input type="checkbox" ng-model = "studentCriteriaMale" ng-change = "showOrHideStudents">Hide male students<br>
+    <input type="checkbox" ng-model = "studentCriteriaFemale">Hide female students<br>
+    <div ng-repeat = "student in getStudents() | orderBy: 'dateOfEntry': true | orderBy: 'sex': true" ng-hide = "studentCriteriaMale && student.sex === 'M' || studentCriteriaFemale && student.sex === 'F'">{{student.name}} {{student.surname}}, {{student.sex}}, entered {{student.dateOfEntry | date:'medium'}}</div>
+    </body>
 </html>

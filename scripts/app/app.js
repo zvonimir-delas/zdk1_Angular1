@@ -2,8 +2,7 @@ var app = angular.module('myApp', ['LocalStorageModule']);
 
 app.run(function(localStorageService){
     if(!localStorageService.get('students'))
-        localStorageService.set('students', [{name: 'Marko', surname: 'Marković', sex: 'M', DateOfEntry: new Date(2017, 5, 15, 8, 50, 51)}, {name: 'Jelena', surname: 'Jelenić', sex: 'F', DateOfEntry: new Date(2017, 4, 12, 15, 40, 1)}]);
-    var students = localStorageService.get('students');    
+        localStorageService.set('students', [{name: 'Marko', surname: 'Marković', sex: 'M', dateOfEntry: new Date(2010, 5, 15, 8, 50, 51)}, {name: 'Jelena', surname: 'Jelenić', sex: 'F', dateOfEntry: new Date(2017, 4, 12, 15, 40, 1)}]);  
 });
 
 app.controller('studentController', function($scope, localStorageService){
@@ -26,6 +25,9 @@ app.controller('studentController', function($scope, localStorageService){
     $scope.returnNumberOfStudents = function(){
         return $scope.allStudents.length;
     }
-});
 
-localStorage.clear();
+    $scope.getStudents = function(){
+        //if null show everyone
+        return !$scope.search ? $scope.allStudents : _.filter($scope.allStudents, function(s){return _.includes(s.name, $scope.search)});
+    }
+});
