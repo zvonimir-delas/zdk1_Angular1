@@ -1,8 +1,8 @@
-var app = angular.module('myApp', ['LocalStorageModule']);
+﻿var app = angular.module('myApp', ['LocalStorageModule']);
 
 app.run(function(localStorageService){
-    if(!localStorageService.get('students'))
-        localStorageService.set('students', [{name: 'Marko', surname: 'Marković', sex: 'M', dateOfEntry: new Date(2010, 5, 15, 8, 50, 51)}, {name: 'Jelena', surname: 'Jelenić', sex: 'F', dateOfEntry: new Date(2017, 4, 12, 15, 40, 1)}]);  
+    if(!localStorageService.get('studentsZD_App1'))
+        localStorageService.set('studentsZD_App1', [{name: 'Marko', surname: 'Marković', sex: 'M', dateOfEntry: new Date(2010, 5, 15, 8, 50, 51)}, {name: 'Jelena', surname: 'Jelenić', sex: 'F', dateOfEntry: new Date(2017, 4, 12, 15, 40, 1)}]);  
 });
 
 app.controller('studentController', function($scope, localStorageService){
@@ -10,11 +10,11 @@ app.controller('studentController', function($scope, localStorageService){
     $scope.surname;
     $scope.sex;
     $scope.dateOfEntry;
-    $scope.allStudents = localStorageService.get('students');
+    $scope.allStudents = localStorageService.get('studentsZD_App1');
 
     $scope.submitNewStudent = function(){
        $scope.allStudents.push({name: $scope.name, surname: $scope.surname, sex: $scope.sex, dateOfEntry: new Date(Math.random()*new Date())});
-       localStorageService.set('students', $scope.allStudents);
+       localStorageService.set('studentsZD_App1', $scope.allStudents);
 
        //thanks to two way data binding, this clears the HTML input
        $scope.name = null;
